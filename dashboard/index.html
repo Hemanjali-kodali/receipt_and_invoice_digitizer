@@ -2,25 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
+  <title>Invoice Digitizer</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <nav class="sidebar">
-    <h2>Dashboard</h2>
-    <ul>
-      <li>Upload Receipt</li>
-      <li>View History</li>
-      <li>Analytics</li>
-    </ul>
-  </nav>
 
-  <main class="content">
-    <h1>Welcome to the Receipt Digitizer Dashboard</h1>
-    <p>This is your dashboard home screen.</p>
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="logo">📄 Invoice Digitizer</div>
+    <ul>
+      <li class="active">Dashboard</li>
+      <li>Upload</li>
+      <li>History</li>
+      <li>Analytics</li>
+      <li>Settings</li>
+    </ul>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <h2>Dashboard</h2>
+      <div class="user-section">
+        Welcome, User
+        <button class="logout">Logout</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="card gradient-blue">
+        <p>Total Processed</p>
+        <h2 id="totalProcessed">0</h2>
+      </div>
+
+      <div class="card gradient-green">
+        <p>This Month</p>
+        <h2 id="thisMonth">0</h2>
+      </div>
+    </div>
+
+    <div class="upload-section">
+      <div class="upload-box" id="dropArea">
+        <p>Drag & Drop Invoice Here</p>
+        <span>or</span>
+        <input type="file" id="fileInput" hidden />
+        <button id="uploadBtn">Choose File</button>
+      </div>
+    </div>
+
+    <div id="processing" class="processing hidden">
+      🔄 Processing OCR...
+    </div>
+
+    <div class="result-box">
+      <h3>Extracted Data</h3>
+      <pre id="resultOutput">No data yet</pre>
+    </div>
+
   </main>
 
-  <script src="app.js"></script>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
