@@ -2,25 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invoice Digitizer Dashboard</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <nav class="sidebar">
-    <h2>Dashboard</h2>
-    <ul>
-      <li>Upload Receipt</li>
-      <li>View History</li>
-      <li>Analytics</li>
-    </ul>
-  </nav>
 
-  <main class="content">
-    <h1>Welcome to the Receipt Digitizer Dashboard</h1>
-    <p>This is your dashboard home screen.</p>
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">📄 Invoice Digitizer</div>
+    <ul>
+      <li class="active" data-page="dashboardPage">Dashboard</li>
+      <li data-page="uploadPage">Upload</li>
+      <li data-page="historyPage">History</li>
+      <li data-page="settingsPage">Settings</li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <h2 id="pageTitle">Dashboard</h2>
+      <div class="user-section">
+        <span>Welcome, User</span>
+        <button class="logout" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboardPage" class="page">
+      <div class="stats">
+        <div class="card gradient-blue">
+          <p>Total Processed</p>
+          <h2 id="totalProcessed">0</h2>
+        </div>
+
+        <div class="card gradient-green">
+          <p>This Month</p>
+          <h2 id="thisMonth">0</h2>
+        </div>
+      </div>
+
+      <!-- ADDED GRAPH -->
+      <div class="chart-container">
+        <h3>Weekly Document Scans</h3>
+        <canvas id="weeklyChart"></canvas>
+      </div>
+    </div>
+
+    <!-- UPLOAD -->
+    <div id="uploadPage" class="page hidden">
+      <div class="upload-box">
+        <p>Drag & Drop Invoice Here</p>
+        <span>or</span>
+        <input type="file" id="fileInput" hidden />
+        <button id="uploadBtn">Choose File</button>
+      </div>
+
+      <div id="processing" class="processing hidden">
+        🔄 Processing OCR...
+      </div>
+
+      <div class="result-box">
+        <h3>Extracted Data</h3>
+        <pre id="resultOutput">No data yet</pre>
+      </div>
+    </div>
+
+    <!-- HISTORY -->
+    <div id="historyPage" class="page hidden">
+      <h3>Processing History</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Vendor</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="historyTable"></tbody>
+      </table>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="settingsPage" class="page hidden">
+      <h3>Settings</h3>
+      <p>Dark Mode (Coming Soon)</p>
+    </div>
+
   </main>
 
-  <script src="app.js"></script>
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

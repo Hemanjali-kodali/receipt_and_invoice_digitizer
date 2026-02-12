@@ -1,15 +1,26 @@
 body {
   margin: 0;
-  display: flex;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f7fb;
 }
 
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
 .sidebar {
   width: 240px;
-  background: #222;
-  color: #fff;
-  height: 100vh;
-  padding: 20px;
+  background: #111827;
+  color: white;
+  padding: 30px 20px;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 40px;
 }
 
 .sidebar ul {
@@ -17,11 +28,132 @@ body {
   padding: 0;
 }
 
-.sidebar ul li {
-  padding: 10px 0;
+.sidebar li {
+  padding: 12px 0;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.3s;
 }
 
-.content {
-  padding: 40px;
+.sidebar li:hover,
+.sidebar li.active {
+  opacity: 1;
+  font-weight: bold;
+}
+
+/* Main */
+.main {
   flex: 1;
+  padding: 40px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logout {
+  background: #6366f1;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  gap: 20px;
+}
+
+.card {
+  flex: 1;
+  padding: 25px;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.gradient-blue {
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+}
+
+.gradient-green {
+  background: linear-gradient(135deg, #10b981, #34d399);
+}
+
+/* Upload */
+.upload-box {
+  border: 2px dashed #cbd5e1;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.upload-box button {
+  background: #6366f1;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Processing */
+.processing {
+  background: #fef3c7;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Result */
+.result-box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* Table */
+table {
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #f3f4f6;
+}
+
+.page {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.chart-container {
+  margin-top: 40px;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
 }
