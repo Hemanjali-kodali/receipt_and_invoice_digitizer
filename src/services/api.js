@@ -1,64 +1,52 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = "http://localhost:8000";
 
 export const api = {
-  // Upload files
-  uploadFiles: async (files) => {
-    const formData = new FormData();
-    Array.from(files).forEach(file => {
-      formData.append('files', file);
+  // Register
+  register: async (data) => {
+    const response = await fetch(`${API_URL}/auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_name: data.name,
+        user_email: data.email,
+        user_password: data.password,
+      }),
     });
 
-    const response = await fetch(`${API_URL}/upload`, {
-      method: 'POST',
+    return response.json();
+  },
+
+  // Login
+  login: async (data) => {
+    const response = await fetch(`${API_URL}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_email: data.email,
+        user_password: data.password,
+      }),
+    });
+
+    return response.json();
+  },
+
+  // Upload Invoice
+  uploadInvoice: async (file, token) => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const response = await fetch(`${API_URL}/invoice/upload`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: formData,
     });
 
     return response.json();
   },
-
-  // Get all files
-  getFiles: async () => {
-    const response = await fetch(`${API_URL}/files`);
-    return response.json();
-  },
-
-  // Get single file
-  getFile: async (id) => {
-    const response = await fetch(`${API_URL}/files/${id}`);
-    return response.json();
-  },
-
-  // Delete file
-  deleteFile: async (id) => {
-    const response = await fetch(`${API_URL}/files/${id}`, {
-      method: 'DELETE',
-    });
-    return response.json();
-  },
-
-  // Extract data
-  extractData: async (id) => {
-    const response = await fetch(`${API_URL}/extract/${id}`, {
-      method: 'POST',
-    });
-    return response.json();
-  },
-
-  // Get statistics
-  getStats: async () => {
-    const response = await fetch(`${API_URL}/stats`);
-    return response.json();
-  },
-
-  // Export data
-  exportJSON: async () => {
-    const response = await fetch(`${API_URL}/export/json`);
-    return response.json();
-  },
-
-  exportCSV: async () => {
-    const response = await fetch(`${API_URL}/export/csv`);
-    const blob = await response.blob();
-    return blob;
-  }
 };

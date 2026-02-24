@@ -1,7 +1,24 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import './Home.css'
 
 function Home() {
+  const navigate = useNavigate();
+
+  // 🔐 Protect page
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <div className="home">
       <nav className="navbar">
@@ -10,6 +27,9 @@ function Home() {
           <div className="nav-links">
             <Link to="/" className="nav-link">Home</Link>
             <Link to="/features" className="nav-link">Features</Link>
+            <button className="nav-link logout-btn" onClick={handleLogout}>
+              Logout
+            </button>
           </div>
         </div>
       </nav>

@@ -4,6 +4,14 @@
   flex-direction: column;
 }
 
+.logout-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: inherit;
+}
+
 .navbar {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 1rem 0;
