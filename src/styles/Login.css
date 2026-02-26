@@ -4,7 +4,7 @@
 }
 
 /* =========================
-   Background + Subtle Noise
+   Background – Softer & Modern
 ========================= */
 .app-wrapper {
   height: 100vh;
@@ -13,27 +13,24 @@
   align-items: center;
   justify-content: center;
   background:
-    radial-gradient(circle at top, #dfe7f3, #eef2f7),
-    repeating-linear-gradient(
-      45deg,
-      rgba(0,0,0,0.015),
-      rgba(0,0,0,0.015) 1px,
-      transparent 1px,
-      transparent 6px
-    );
+    radial-gradient(circle at 20% 20%, #e0e7ff, transparent 40%),
+    radial-gradient(circle at 80% 80%, #dbeafe, transparent 40%),
+    #f8fafc;
 }
 
 /* =========================
-   Main Container
+   Main Container – Glass Feel
 ========================= */
 .auth-container {
-  width: 900px;
-  height: 520px;
+  width: 920px;
+  height: 540px;
   display: flex;
-  border-radius: 22px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
-  animation: fadeUp 0.8s ease;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12);
+  animation: fadeUp 0.7s ease;
 }
 
 /* =========================
@@ -41,11 +38,12 @@
 ========================= */
 .visual-section {
   flex: 1;
-  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+  padding: 40px;
 }
 
 .visual-card {
@@ -53,17 +51,18 @@
   animation: float 6s ease-in-out infinite;
 }
 
-/* Scanner illustration */
 .scanner-circle {
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
+  margin: 0 auto 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .receipt-icon {
@@ -86,18 +85,18 @@
 }
 
 .visual-title {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 700;
+  margin-bottom: 8px;
 }
 
 .visual-quote {
   font-size: 14px;
   opacity: 0.9;
   max-width: 260px;
-  margin: 8px auto 16px;
+  margin: 0 auto 18px;
 }
 
-/* Feature Teasers */
 .feature-list {
   list-style: none;
   padding: 0;
@@ -116,82 +115,139 @@
 .login-section {
   flex: 1;
   background: white;
-  padding: 50px;
+  padding: 60px 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .login-section h2 {
-  margin-bottom: 24px;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 28px;
 }
 
 /* =========================
-   Buttons + Accessibility
+   Inputs – Better UX
+========================= */
+.auth-input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  background: #f9fafb;
+}
+
+.auth-input:hover {
+  background: #ffffff;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Password Toggle */
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 16px;
+  top: 38%;
+  cursor: pointer;
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.toggle-password:hover {
+  color: #4f46e5;
+}
+
+/* =========================
+   Buttons – Clear CTA
 ========================= */
 .google-btn {
   padding: 14px;
-  border-radius: 10px;
+  border-radius: 12px;
   border: none;
   font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
-.google-btn img {
-  width: 18px;
-  background: #fff;
-  border-radius: 50%;
-  padding: 2px;
-}
-
-/* Hover scale */
-.google-btn:hover {
-  transform: scale(1.02);
-}
-
-/* Focus outline (accessibility) */
-.google-btn:focus-visible {
-  outline: 3px solid #2563eb;
-  outline-offset: 2px;
-}
-
-/* Primary */
 .google-btn.primary {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
   color: white;
 }
 
 .google-btn.primary:hover {
-  box-shadow: 0 12px 28px rgba(59, 130, 246, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(79, 70, 229, 0.35);
 }
 
-/* Secondary */
 .google-btn.secondary {
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  margin-top: 10px;
+  background: #f3f4f6;
+  color: #111827;
+  margin-top: 12px;
 }
 
 .google-btn.secondary:hover {
-  background: #f1f5f9;
+  background: #e5e7eb;
 }
 
-/* Text */
+.google-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid white;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =========================
+   Text & Errors
+========================= */
 .divider {
-  margin: 22px 0 12px;
+  margin: 24px 0 12px;
   font-size: 13px;
-  color: #64748b;
+  color: #6b7280;
 }
 
 .footer-text {
   font-size: 12px;
-  color: #64748b;
-  margin-top: 18px;
+  color: #9ca3af;
+  margin-top: 20px;
+}
+
+.error-text {
+  color: #ef4444;
+  font-size: 13px;
+  margin-top: -8px;
+  margin-bottom: 10px;
 }
 
 /* =========================
@@ -200,7 +256,7 @@
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
@@ -210,34 +266,25 @@
 
 @keyframes float {
   0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-6px); }
   100% { transform: translateY(0); }
 }
 
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 900px) {
+  .auth-container {
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+  }
 
-.google-btn.secondary {
-  background: #f3f4f6;
-  color: #111827;
-  border: none;
-  margin-top: 10px;
-}
+  .visual-section {
+    display: none;
+  }
 
-.google-btn.secondary:hover {
-  background: #e5e7eb;
-}
-
-
-.auth-switch {
-  margin-top: 20px;
-  font-size: 14px;
-}
-
-.auth-link {
-  color: #4f46e5;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.auth-link:hover {
-  text-decoration: underline;
+  .login-section {
+    padding: 40px 30px;
+  }
 }

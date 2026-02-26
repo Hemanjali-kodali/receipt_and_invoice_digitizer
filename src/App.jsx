@@ -4,6 +4,7 @@ import Features from './pages/Features'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import './App.css'
+import Dashboard from './pages/Dashboard'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/features" element={<Features />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

@@ -9,37 +9,42 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Redirect if already logged in
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setErrorMessage("");
+    setLoading(true);
 
     try {
       const res = await api.login({ email, password });
 
       if (res.access_token) {
         localStorage.setItem("token", res.access_token);
-        navigate("/");
+        navigate("/dashboard");
       } else {
         setErrorMessage(res.detail || "Invalid credentials");
       }
     } catch (error) {
       console.error(error);
       setErrorMessage("Login failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="app-wrapper">
-      <div className="auth-container">
+      <div className="auth-container fade-in">
 
         {/* LEFT SIDE */}
         <div className="visual-section">
@@ -65,9 +70,10 @@ const Login = () => {
 
         {/* RIGHT SIDE */}
         <div className="login-section">
-          <h2>Login</h2>
+          <h2>Welcome Back 👋</h2>
+          <p className="subtitle">Please login to continue</p>
 
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleLogin} className="login-form">
             <input
               type="email"
               placeholder="Email"
@@ -77,24 +83,34 @@ const Login = () => {
               required
             />
 
-            <input
-              type="password"
-              placeholder="Password"
-              className="auth-input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                className="auth-input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <span
+                className="toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "🙈" : "👁"}
+              </span>
+            </div>
 
-            <button type="submit" className="google-btn primary">
-              Sign In
+            <button
+              type="submit"
+              className="google-btn primary"
+              disabled={loading}
+            >
+              {loading ? <div className="spinner"></div> : "Login"}
             </button>
           </form>
 
           {errorMessage && (
-            <p style={{ color: "red", marginTop: "10px" }}>
-              {errorMessage}
-            </p>
+            <p className="error-text">{errorMessage}</p>
           )}
 
           <div className="divider">Don't have an account?</div>

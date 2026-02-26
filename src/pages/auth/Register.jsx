@@ -14,6 +14,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
+      // Create Account
       const res = await api.register({
         name,
         email,
@@ -21,8 +22,21 @@ const Register = () => {
       });
 
       if (res.message === "User created") {
-        alert("Account created successfully!");
-        navigate("/login");
+        // Redirect to the login
+        const loginRes = await api.login({
+          email,
+          password,
+        });
+
+        if (loginRes.access_token) {
+          localStorage.setItem("token", loginRes.access_token);
+
+          // Redirect to dashboard
+          navigate("/dashboard");
+        }
+
+        // alert("Account created successfully!");
+        // navigate("/login");
       } else {
         alert(res.detail || "Registration failed");
       }
